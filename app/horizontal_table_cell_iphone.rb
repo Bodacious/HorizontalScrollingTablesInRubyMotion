@@ -22,12 +22,14 @@ class HorizontalTableCellIphone < HorizontalTableCell
 
   def initWithFrame(frame)
     if super
-      self.horizontalTableView = UITableView.alloc.initWithFrame CGRectMake(0, 0, CellHeight, TableLength)
+      x      = TableLength-RowHorizontalPadding-CellHeight * 0.5
+      y      = -(TableLength-RowHorizontalPadding-CellHeight) * 0.5
+      width  = CellHeight
+      height = TableLength-RowHorizontalPadding
+      self.horizontalTableView = UITableView.alloc.initWithFrame([[x, y], [width, height]])
       self.horizontalTableView.showsVerticalScrollIndicator = false
       self.horizontalTableView.showsHorizontalScrollIndicator = false
       self.horizontalTableView.transform = CGAffineTransformMakeRotation(-Math::PI * 0.5)
-      self.horizontalTableView.frame = CGRectMake(RowHorizontalPadding * 0.5, RowVerticalPadding * 0.5, TableLength - RowHorizontalPadding, CellHeight)
-
       self.horizontalTableView.rowHeight = CellWidth
       self.horizontalTableView.backgroundColor = HorizontalTableBackgroundColor
 
